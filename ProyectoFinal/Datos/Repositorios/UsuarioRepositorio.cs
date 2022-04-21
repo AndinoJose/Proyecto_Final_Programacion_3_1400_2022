@@ -1,5 +1,6 @@
 ﻿using Datos.Interfaces;
 using Modelos;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,17 @@ namespace Datos.Repositorios
 {
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
+        private string CadenaConexion;
+        public UsuarioRepositorio (string cadenaConexion)
+        {
+            CadenaConexion = cadenaConexion;
+        }
+
+        private MySqlConnection Conexion()
+        {
+            return new MySqlConnection (CadenaConexion);
+        }
+
         public Task<bool> Actualizar(Usuario usuario)
         {
             throw new NotImplementedException();
